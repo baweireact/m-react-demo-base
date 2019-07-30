@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="lib/react.development.js"></script>
+    <script src="lib/react-dom.development.js"></script>
+    <script src="lib/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class HelloMessage extends React.Component {
+        render() {
+          return (
+            <div>
+              Hello {this.props.name}
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <HelloMessage name="徐同保"/>,
+        document.getElementById('root')
+      )
+    </script>
+  </body>
+</html>
