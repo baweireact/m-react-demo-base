@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="lib/react.development.js"></script>
+    <script src="lib/react-dom.development.js"></script>
+    <script src="lib/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class TodoApp extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            items: [],
+            text: ''
+          }
+        }
+        //受控组件
+        handleChange(field, e) {
+          this.setState({
+            [field]: e.target.value
+          })
+        }
+        //添加事件
+        handleAdd() {
+          let {items, text} = this.state
+          if (text.trim() === '') {
+            return
+          }
+          items = items.concat(text)
+          this.setState({
+            items,
+            text: ''
+          })
+        }
+        render() {
+          let {
+            text,
+            items,
+          } = this.state
+          return (
+            <div>
+              <h3>TODO</h3>
+              <div>
+                <div>你需要做什么？</div>
+                <TodoList items={items}/>
+                <input type='text' value={text} onChange={this.handleChange.bind(this, 'text')}></input>
+                <button onClick={this.handleAdd.bind(this)}>添加</button>
+              </div>
+            </div>
+          )
+        }
+      }
+
+      class TodoList extends React.Component {
+        render(){
+          let {items} = this.props
+          return (
+            <ul>
+                {
+                  items.map((item, index) => {
+                    return <li key={index}>{item}</li>
+                  })
+                }
+            </ul>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <TodoApp />,
+        document.getElementById('root')
+      )
+    </script>
+  </body>
+</html>

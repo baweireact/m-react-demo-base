@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="lib/react.development.js"></script>
+    <script src="lib/react-dom.development.js"></script>
+    <script src="lib/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/remarkable/1.7.1/remarkable.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class MarkdownEditor extends React.Component {
+        constructor(props) {
+          super(props);
+          this.handleChange = this.handleChange.bind(this);
+          this.state = { 
+            value: `# h1 Heading 
+## h2
+Hello, **world**
+              ` 
+          };
+        }
+
+        handleChange(e) {
+          this.setState({ value: e.target.value });
+        }
+
+        getRawMarkup() {
+          const md = new Remarkable();
+          return { __html: md.render(this.state.value) };
+        }
+
+        render() {
+          return (
+            <div className="MarkdownEditor">
+              <h3>Input</h3>
+              <label htmlFor="markdown-content">
+                Enter some markdown
+              </label>
+              <textarea
+                id="markdown-content"
+                onChange={this.handleChange}
+                defaultValue={this.state.value}
+              />
+              <h3>Output</h3>
+              <div
+                className="content"
+                dangerouslySetInnerHTML={this.getRawMarkup()}
+              />
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <MarkdownEditor />,
+        document.getElementById('root')
+      )
+    </script>
+  </body>
+</html>
