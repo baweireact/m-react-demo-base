@@ -4,8 +4,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      count: 0,
-      name: 'xu'
+      count: 0
     }
   }
 
