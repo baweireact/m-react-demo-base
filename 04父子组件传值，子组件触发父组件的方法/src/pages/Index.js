@@ -21,7 +21,9 @@ class Index extends Component {
     let {count} = this.state
     return (
       <div>
+        {/*
         <div>{count}</div>
+        */}
         <div>
           <Control onAdd={this.handleAdd.bind(this)}/>
         </div>
