@@ -43,6 +43,26 @@ class Index extends Component {
     })
   }
 
+  handleDelete(id) {
+    let {list} = this.state
+    let newList = list.filter(item => item.id !== id)
+    this.setState({
+      list: newList
+    })
+  }
+
+  componentDidUpdate() {
+    let {list} = this.state
+    localStorage.setItem('list', JSON.stringify(list))
+  }
+
+  componentDidMount() {
+    let list = JSON.parse(localStorage.getItem('list')) || []
+    this.setState({
+      list
+    })
+  }
+
   render() {
     let {
       text,
@@ -52,11 +72,11 @@ class Index extends Component {
       <div>
         <input type="text" value={text} onChange={this.handleInput.bind(this, 'text')} onKeyDown={this.handleEnter.bind(this)}></input>
         <div>全部({list.length})：</div>
-        <List list={list} checked="all" onUpdateList={this.handleUpdateList.bind(this)}></List>
+        <List list={list} checked="all" onUpdateList={this.handleUpdateList.bind(this)} onDelete={this.handleDelete.bind(this)}></List>
         <div>正在进行({list.filter(item => item.checked === false).length})：</div>
-        <List list={list} checked={false} onUpdateList={this.handleUpdateList.bind(this)}></List>
-        <div>已完成({list.filter(item => item.checked === true).length})：</div>
-        <List list={list} checked={true} onUpdateList={this.handleUpdateList.bind(this)}></List>
+        <List list={list} checked={false} onUpdateList={this.handleUpdateList.bind(this)} onDelete={this.handleDelete.bind(this)}></List>
+        <div>已经完成({list.filter(item => item.checked === true).length})：</div>
+        <List list={list} checked={true} onUpdateList={this.handleUpdateList.bind(this)} onDelete={this.handleDelete.bind(this)}></List>
       </div>
     )
   }

@@ -1,0 +1,10 @@
+.m-wrap{margin: 10px 0 0;}
+.m-input-wrap{margin: 0 20px;}
+.m-input{width: 100%; height: 50px;line-height: 50px;font-size: 36px;text-align: right;color: #f66f0c;font-weight: bold}
+.m-number-wrap{margin: 10px 20px;}
+.m-equal-btn{display: inline-block;width: 100%;height: 50px;line-height: 50px;font-size: 36px;color: #333333;font-weight: bold;}
+.m-control-wrap{margin: 10px 20px;}
+.m-control-btn{display: inline-block;width: 33%;height: 50px;line-height: 50px;font-size: 36px;color: #333333;font-weight: bold;}
+
+
+

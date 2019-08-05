@@ -6,6 +6,10 @@ class List extends Component {
     this.props.onUpdateList(id, e.target.checked)
   }
 
+  handleDelete(id) {
+    this.props.onDelete(id)
+  }
+
   render() {
     let {
       list,
@@ -21,6 +25,7 @@ class List extends Component {
     }).map(item => (<li key={item.id}>
       <input type="checkbox" checked={item.checked} onChange={this.handleCheckbox.bind(this, item.id)}></input>
       {item.text}
+      <button onClick={this.handleDelete.bind(this, item.id)}>删除</button>
     </li>))
     return (
       <ul>
