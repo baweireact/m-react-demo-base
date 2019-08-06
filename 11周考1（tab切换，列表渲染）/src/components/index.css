@@ -1,0 +1,5 @@
+.m-nav-item {display: inline-block;margin: 0 20px; color: #333333;font-size: 36px;cursor: pointer;}
+.m-nav-item.active{color: #f66f0c;border-bottom: 2px solid #f66f0c;}
+.m-list-item{margin: 10px;}
+.m-list-img{width: 100%;}
+.m-list-title{text-align: center;font-size: 24px;color:#333333;}
