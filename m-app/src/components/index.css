@@ -3,3 +3,4 @@
 .m-list-item{margin: 10px;}
 .m-list-img{width: 100%;}
 .m-list-title{text-align: center;font-size: 24px;color:#333333;}
+.m-list-wrap{height: 100px;overflow-y: auto}
