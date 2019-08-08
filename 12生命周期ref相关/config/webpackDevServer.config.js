@@ -101,85 +101,62 @@ module.exports = function(proxy, allowedHost) {
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware());
 
-      app.get('/list', (req, res) => {
-
-        let list1 = [
-          {
-            title: '推荐',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  name: '@cname',
-                  image: '@image'
-                }
-              ]
-            })
-          },
-          {
-            title: '汽车',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  name: '@cname',
-                  image: '@image'
-                }
-              ]
-            })
-          },
-          {
-            title: '体育',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  name: '@cname',
-                  image: '@image'
-                }
-              ]
-            })
-          }
-        ]
-
+      app.get('/list', function(req, res) {
         let list = [
           {
             title: '推荐',
             ...Mock.mock({
-              'list|10': [
-                {
-                  'id|+1': 1,
-                  'name': '@cname',
-                  'image': '@image(300X300)',
-                }
+              'list|20':[
+                  {
+                      name:'@cname',
+                      'rate|1-5':1,
+                      image:'@image(300X300)',
+                      'price|300-1500':1,
+                      title:'@ctitle',
+                      address: Mock.Random.city(true),
+                      email: '@email'
+                  }
               ]
-            })
+            }) 
           },
           {
             title: '汽车',
             ...Mock.mock({
-              'list|10': [
-                {
-                  'id|+1': 1,
-                  'name': '@cname',
-                  'image': '@image(300X300)',
-                }
+              'list|20':[
+                  {
+                      name:'@cname',
+                      'rate|1-5':1,
+                      image:'@image(300X300)',
+                      'price|300-1500':1,
+                      title:'@ctitle',
+                      address: Mock.Random.city(true),
+                      email: '@email'
+                  }
               ]
-            })
+            }) 
           },
           {
             title: '体育',
             ...Mock.mock({
-              'list|10': [
-                {
-                  'id|+1': 1,
-                  'name': '@cname',
-                  'image': '@image(300X300)',
-                }
+              'list|20':[
+                  {
+                      name:'@cname',
+                      'rate|1-5':1,
+                      image:'@image(300X300)',
+                      'price|300-1500':1,
+                      title:'@ctitle',
+                      address: Mock.Random.city(true),
+                      email: '@email'
+                  }
               ]
-            })
-          },
+            }) 
+          }
         ]
         res.send({
           code: 200,
-          data: list,
+          data: {
+            list
+          },
           message: '列表'
         })
       })

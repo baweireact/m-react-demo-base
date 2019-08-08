@@ -6,7 +6,6 @@ const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMi
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const paths = require('./paths');
 const fs = require('fs');
-const Mock = require('mockjs')
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -100,89 +99,6 @@ module.exports = function(proxy, allowedHost) {
       // it used the same host and port.
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware());
-
-      app.get('/list', (req, res) => {
-
-        let list1 = [
-          {
-            title: '推荐',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  name: '@cname',
-                  image: '@image'
-                }
-              ]
-            })
-          },
-          {
-            title: '汽车',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  name: '@cname',
-                  image: '@image'
-                }
-              ]
-            })
-          },
-          {
-            title: '体育',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  name: '@cname',
-                  image: '@image'
-                }
-              ]
-            })
-          }
-        ]
-
-        let list = [
-          {
-            title: '推荐',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  'id|+1': 1,
-                  'name': '@cname',
-                  'image': '@image(300X300)',
-                }
-              ]
-            })
-          },
-          {
-            title: '汽车',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  'id|+1': 1,
-                  'name': '@cname',
-                  'image': '@image(300X300)',
-                }
-              ]
-            })
-          },
-          {
-            title: '体育',
-            ...Mock.mock({
-              'list|10': [
-                {
-                  'id|+1': 1,
-                  'name': '@cname',
-                  'image': '@image(300X300)',
-                }
-              ]
-            })
-          },
-        ]
-        res.send({
-          code: 200,
-          data: list,
-          message: '列表'
-        })
-      })
     },
   };
 };
