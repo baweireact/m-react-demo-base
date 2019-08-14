@@ -1,0 +1,24 @@
+.m-header{position: relative; height: 50px;}
+.m-logo{position: absolute; top: 4px;left: 4px; width: 162px; height: 42px;background-image:url(../static/images/logo.png);background-size: 100% 100%;}
+.m-input-wrap{margin: 0 75px 0 175px;padding: 5px 0 0 0;}
+.m-input{display: block;width: 100%;min-width: 70px; height: 34px;}
+.m-serach-btn{position: absolute;top: 5px;right: 20px;height: 40px;}
+.m-swiper-img{width: 100%;}
+.m-banner-nav{text-align: center}
+.m-swiper-img-nav{display: inline-block;margin: 0 5px;width: 70px;}
+.m-list-item{position: relative; margin: 20px 5px;}
+.m-list-content{display: inline-block;width: 50%;}
+.m-list-img{display: inline-block;width: 50%;vertical-align: top;}
+.m-list-title{font-size: 14px;font-weight: bold;color: #333333;line-height: 22px;height: 66px;}
+.m-list-author-img{display: inline-block; width: 25px;height: 25px;border-radius: 25px;}
+.m-list-author-name{display: inline-block; line-height: 25px;color: #dddddd;margin: 0 2px;vertical-align: top;}
+.m-list-address-prefix{display: inline-block;color: #dddddd;line-height: 25px; vertical-align: top;}
+.m-list-address{display: inline-block;width: 60px; line-height: 25px;color: #f66f0c;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; vertical-align: top;}
+
+
+
+
+
+
+
+

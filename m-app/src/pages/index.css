@@ -1,0 +1,9 @@
+.m-back{margin: 10px;font-size: 26px;}
+.m-page-content{position: absolute; top:50px;left: 0;right: 0;bottom: 0;}
+.m-book-detail-nav{margin: 0 0 0 10px; font-size: 20px;font-weight: bold}
+.m-book-detail-nav-item{display: inline-block;margin: 0 10px 0 0;color: #999999;cursor: pointer;}
+.m-book-detail-nav-item.active{color: #bf2c24;border-bottom: 2px solid #bf2c24;}
+.m-book-detail-content{display: none; margin: 10px;text-align: justify;}
+.m-book-detail-content.active{display: block;}
+.m-my-book{margin: 10px;}
+.m-toolbar{margin: 10px;}

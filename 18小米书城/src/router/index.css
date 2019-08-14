@@ -1,0 +1,4 @@
+.m-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;min-width: 560px;}
+.m-nav{padding:0 0 0 7px;background:#dddddd;}
+.m-nav-item{display: inline-block;margin: 0 10px;color: #333333;font-size: 36px;line-height: 50px;}
+.m-nav-item.active{color: #f66f0c;}
