@@ -1,0 +1,16 @@
+.m-login{position: absolute;top: 30%;left: 50%;transform: translate(-50%,-50%)}
+.m-header{height: 50px;text-align: center;font-size: 36px;line-height: 50px;font-weight: bold;background: #55c53f;}
+.m-quit{position: absolute;top: 0px;right: 10px;font-size: 28px;color: #333333;cursor: pointer;}
+.m-quit:hover{color: #f66f0c;}
+.m-sidebar{position: absolute;top: 50px;left: 0;bottom: 0;width: 120px; background: #dddddd;}
+.m-city-nav-warp{margin: 0 0 0 120px}
+.m-district-nav-wrap{margin: 0 0 0 120px;}
+.m-province{display: block;padding: 10px;font-size: 50px;color: #333333;text-decoration: none}
+.m-province.active{color: #f66f0c;background: #a1edfa;}
+.m-province-content{margin: 0 0 0 130px;}
+.m-city{display: inline-block;margin: 10px;font-size: 32px;color: #333333;}
+.m-city.active{color:#0de042}
+.m-city-content{margin: 10px 10px 10px 130px;}
+.m-district{display: inline-block;margin: 10px;font-size: 18px;color: #333333;}
+.m-district.active{color: #f709cf}
+.m-content{margin: 10px 10px 10px 130px;height: 400px;background: #a1edfa;}

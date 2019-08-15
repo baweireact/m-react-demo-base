@@ -23,7 +23,6 @@ class Router extends Component {
     return (
       <div>
         <Switch>
-
           <Route path='/' exact={true} component={Login}></Route>
           <Route path='/index'>
             <Route>
@@ -46,7 +45,7 @@ class Router extends Component {
                       <Route path="/index/hebei/shijiazhuang/xinhua" component={XinHua}></Route>
                     </Switch>
                   </Route>
-                  <Route path="/index/hebei/tanshan" component={TangShan}></Route>
+                  <Route path="/index/hebei/tangshan" component={TangShan}></Route>
                   <Route path="/index/hebei/qinhuangdao" component={QinHuangDao}></Route>
                 </Switch>
               </Route>
