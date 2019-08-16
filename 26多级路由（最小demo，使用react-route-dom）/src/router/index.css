@@ -1,0 +1,24 @@
+.m-header{height: 50px;line-height: 50px;text-align: center;font-size: 36px;font-weight: bold;background: #dddddd;}
+.m-quit{position: absolute;top: 13px;right: 10px;}
+.m-sidebar{position: absolute;top:50px;left: 0;bottom: 0; width: 120px;background: #aaaaaa;}
+.m-sidebar-item{display: block;height: 50px;line-height: 50px;font-size: 36px; text-decoration: none;text-align: center;color: #333333;}
+.m-sidebar-item.active{background: #cccccc;color: #f66f0c;}
+.m-city-nav{margin: 0 0 0 120px;height: 50px;line-height: 50px;background: #bbbbbb;}
+.m-city-nav-item{display: inline-block;width: 100px;text-decoration: none;color: #333333;}
+.m-city-nav-item.active{background: #999999;color: #f66f0c;}
+.m-province{margin:  0 0 0 120px;}
+.m-city{margin: 0 0 0 120px;}
+.m-not-found{position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%)}
+
+
+
+
+
+
+
+
+
+
+
+
+
