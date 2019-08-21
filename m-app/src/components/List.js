@@ -1,24 +1,25 @@
-import React, {Component} from 'react'
-import ListItem from '../components/ListItem.js'
+import React, {Component} from 'react' 
+import ListItem from './ListItem.js'
 import './index.css'
 
 class List extends Component {
-  handleAddToMyBook(book) {
-    this.props.onAddToMyBook(book)
-  }
-  render() {
-    let {
-      list
-    } = this.props
-    let listDom
-    if (list.length > 0) {
-      listDom = list.map((item, index) => (
-        <ListItem key={item.id} item={item} onAddToMyBook={this.handleAddToMyBook.bind(this)}></ListItem>
-      ))
-    }
+  constructor(props) {
+    super(props)
 
-    return(
-      <div className="m-list">{listDom}</div>
+  }
+
+  render() {
+    let {list} = this.props
+
+    let listDom = list.map((item, index) => (
+      <ListItem 
+        item={item} 
+        key={index}></ListItem>
+    ))
+    return (
+      <ul className="m-list">
+        {listDom}
+      </ul>
     )
   }
 }

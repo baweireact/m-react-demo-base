@@ -1,49 +1,67 @@
-import React, { Component } from 'react'
-import {withRouter} from 'react-router-dom'
-import {message} from 'antd'
+import React, {Component} from 'react'
+import axios from 'axios'
+import MessageBox from './MessageBox.js'
+import './index.css'
 
 class ListItem extends Component {
   constructor(props) {
     super(props)
-  }
-  handleDetail(id) {
-    this.props.history.push(`/detail/${id}`)
+    this.state = {
+      active: false,
+      detail: {},
+    }
   }
 
-  handleAddToMyBook(book) {
-    this.props.onAddToMyBook(book)
+  handleEnter() {
+    this.setState({
+      active: true
+    })
+  }
+
+  handleLeave() {
+    this.setState({
+      active: false,
+      detail: {}
+    })
+  }
+
+  handleGetDetail(id) {
+    axios({
+      url: `/list_item/detail?id=${id}`,
+      method: 'get'
+    }).then((res) => {
+      console.log(res)
+      if (res.data.code === 200) {
+        this.setState({
+          detail: res.data.data
+        })
+      }
+    })
   }
 
   render() {
+    let {item} = this.props
     let {
-      item
-    } = this.props
+      active,
+      detail,
+    } = this.state
     return (
-      <div className="m-list-item">
-        <img className="m-list-item-img" src={item.avatar} alt={item.title}></img>
-        <div className="m-list-content">
-          <div className="m-list-title">{item.title}</div>
-          <div>
-            {
-              item.tags.map((item, index) => (
-                <span key={index} className="m-list-tag">{item}</span>
-              ))}
-          </div>
-          <div className="m-list-summary">
-            {item.summary}
-          </div>
-          <div>
-            <span className="m-detail-btn" onClick={this.handleDetail.bind(this, item.id)}>书籍详情</span>
-            {
-              item.is_in_my_book
-              ? <span className="m-add-btn active" onClick={this.handleAddToMyBook.bind(this, item)}>加入书架</span>
-              : <span className="m-add-btn">已在书架</span>
-            }
-          </div>
-        </div>
-      </div>
+      <li className="m-list-item" 
+        onMouseEnter={this.handleEnter.bind(this)}
+        onMouseLeave={this.handleLeave.bind(this)}
+        onClick={this.handleGetDetail.bind(this, item.id)}
+        >
+        <span className="m-list-item-name">{item.name}</span>
+        <span className="m-list-item-status">{item.status}</span>
+        <span 
+          className={"m-list-item-code " + (item.status === 'closed' || item.status === 'edited' ? 'active' : '')}>
+          {item.code}
+        </span>
+        <span className="m-list-item-time">{item.time}</span>
+        <MessageBox messageInfo={item} active={active} detail={detail}/>
+      </li>
     )
   }
 }
 
-export default withRouter(ListItem)
+export default ListItem

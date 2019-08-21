@@ -8,7 +8,7 @@ const paths = require('./paths');
 const fs = require('fs');
 const Mock = require('mockjs')
 const bodyParser = require('body-parser');
-const {bookNavData, bookMallData} = require('./data.js')
+const {myList, myListDetail} = require('./data.js')
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -233,43 +233,6 @@ module.exports = function(proxy, allowedHost) {
           message: '详情'
         })
 
-      })
-
-      app.get('/book_nav', (req, res) => {
-        res.send({
-          code: 200,
-          data: bookNavData,
-          message: '书城导航'
-        })
-      })
-
-      app.get('/book_mall', (req, res) => {
-        let {id} = req.query
-        res.send({
-          code: 200,
-          data: bookMallData[id],
-          message: '书城列表'
-        })
-      })
-
-      app.get('/book_detail', (req, res) => {
-        let {id} = req.query
-        let detail
-        for (let i = 0; i < bookMallData.length; i++) {
-          for (let j = 0; j < bookMallData[i].list.length; j++) {
-            if (bookMallData[i].list[j].id == id) {
-              detail = bookMallData[i].list[j]
-              break
-            }
-          }
-        }
-        console.log(id)
-        console.log(bookMallData)
-        res.send({
-          code: 200,
-          data: detail,
-          message: '详情'
-        })
       })
       
     },
