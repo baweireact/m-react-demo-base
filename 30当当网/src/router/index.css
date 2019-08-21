@@ -1,0 +1,37 @@
+.m-wrap{display: flex; flex-direction:column; position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-header{position: relative;padding: 0 100px; height: 50px;background: #dddddd;}
+.m-search-input{display: block; margin: 5px 0; padding: 0 0 0 10px; width: 100%;height: 36px;line-height: 40px;border: 1px solid #aaaaaa; border-radius: 17px;}
+.m-search-input:focus{outline:none;}
+.m-main{flex: 1px;overflow-y: auto;}
+.m-category{display: flex;height: 100%;}
+.m-sidebar{width: 120px;background: #aaaaaa;}
+.m-right-content{flex: 1;padding: 0 0 0 5px; background: #b8eefc;}
+.m-sidebar-nav-item{display: block;height: 40px;line-height: 40px; text-decoration:none;text-align: center;cursor: pointer;}
+.m-sidebar-nav-item.active{color: #ff0000;background: #b8eefc;}
+.m-banner{width: 100%;}
+.m-right-link{display: inline-block;margin: 10px;color: #333333;cursor: pointer;}
+.m-right-link:hover{color: #ff0000;}
+.m-category-wrap{margin: 0 0 50px 0;}
+.m-category-title{margin: 10px;font-size: 18px;}
+.m-category-list-item{margin: 10px 0 0;display: flex;}
+.m-category-item-img{display: inline-block; width: 150px;height: 150px;}
+.m-category-item-info{flex: 1; margin: 0 0 0 10px;border-bottom: 1px solid #dddddd;}
+.m-category-item-title{font-weight: bold;}
+.m-fold{position: relative; padding: 10px;border-bottom: 1px solid #dddddd;}
+.m-fold-btn{ display: inline-block;position: absolute;top: -30px;right: 20px;color: #f66f0c; cursor: pointer;}
+.m-category-nav{margin: 2px 0;}
+.m-category-nav.fold{height: 60px;overflow: hidden;}
+.m-category-nav-item{display: inline-block;margin: 0 5px;padding: 0 10px; height: 30px;line-height: 30px;border-radius: 4px; font-weight: bold; text-align: center;}
+.m-category-nav-item.active{background: #ff0000;color: #ffffff;}
+.m-footer{display: flex; position: relative;height: 50px;background: #dddddd;}
+.m-footer-nav-item{flex: 1px; line-height: 50px; text-align: center;text-decoration:none;cursor: pointer; }
+.m-footer-nav-item.active{color: #ff0000;}
+.m-loading{display: none; position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.2)}
+.m-loading.active{display: block}
+.m-loading-img-wrap{display: inline-block;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);}
+.m-loading-img{display: inline-block;width: 50px;height: 50px; background-image: url(../static/images/loading.png); background-size: 100% 100%;animation: loading 0.5s linear infinite;}
+
+@keyframes loading {
+  from {transform: rotate(0deg)}
+  to {transform: rotate(359deg)}
+}
