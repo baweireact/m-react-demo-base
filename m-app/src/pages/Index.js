@@ -8,7 +8,7 @@ export default class Index extends Component {
     super(props)
     this.state = {
       list: [],
-      currentIndex: 0,
+      currentIndex: 0
     }
   }
 

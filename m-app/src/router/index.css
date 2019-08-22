@@ -24,8 +24,9 @@
 .m-cart-group-checkbox{font-size: 20px!important;font-weight: bold;}
 .m-cart-checkbox-wrap{position: relative;padding: 0 0 0 24px;}
 .m-cart-order-wrap{position: absolute;top: 0;right: 10px;}
-
-
+.m-total-wrap{margin: 10px;}
+.m-total-num{margin: 0 5px;font-size: 20px;font-weight: bold;color: #f66f0c;}
+.m-select-all{margin: 10px 0 0!important; font-size: 20px!important;font-weight: bold;}
 
 
 
