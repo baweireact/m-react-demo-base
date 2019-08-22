@@ -8,7 +8,7 @@ const paths = require('./paths');
 const fs = require('fs');
 const Mock = require('mockjs')
 const bodyParser = require('body-parser');
-const {myList, myListDetail} = require('./data.js')
+const { footList } = require('./data.js')
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -104,137 +104,13 @@ module.exports = function(proxy, allowedHost) {
       app.use(noopServiceWorkerMiddleware());
       app.use(bodyParser.json());
 
-      app.get('/list', function(req, res) {
-        let list = [
-          {
-            title: '推荐',
-            ...Mock.mock({
-              'list|20':[
-                  {
-                      name:'@cname',
-                      'rate|1-5':1,
-                      image:'@image(300X300)',
-                      'price|300-1500':1,
-                      title:'@ctitle',
-                      address: Mock.Random.city(true),
-                      email: '@email'
-                  }
-              ]
-            }) 
-          },
-          {
-            title: '汽车',
-            ...Mock.mock({
-              'list|20':[
-                  {
-                      name:'@cname',
-                      'rate|1-5':1,
-                      image:'@image(300X300)',
-                      'price|300-1500':1,
-                      title:'@ctitle',
-                      address: Mock.Random.city(true),
-                      email: '@email'
-                  }
-              ]
-            }) 
-          },
-          {
-            title: '体育',
-            ...Mock.mock({
-              'list|20':[
-                  {
-                      name:'@cname',
-                      'rate|1-5':1,
-                      image:'@image(300X300)',
-                      'price|300-1500':1,
-                      title:'@ctitle',
-                      address: Mock.Random.city(true),
-                      email: '@email'
-                  }
-              ]
-            }) 
-          }
-        ]
+      app.get('/list', (req, res) => {
         res.send({
           code: 200,
-          data: {
-            list
-          },
-          message: '列表'
+          data: footList,
+          message: '西少爷点餐'
         })
       })
-
-      let user = [
-        {
-          username: 'admin',
-          password: '123456'
-        },
-        {
-          username: 'xu',
-          password: '12345'
-        }
-      ]
-      
-      app.post('/login', (req, res) => {
-        let { username, password } = req.body
-        let isLoginSuccess = false
-        for (let i = 0; i < user.length; i++) {
-          if (user[i].username === username) {
-            if (user[i].password === password) {
-              isLoginSuccess = true
-              break
-            }
-          }
-        }
-        if (isLoginSuccess) {
-          res.send({
-            code: 200,
-            data: {
-              username
-            },
-            message: '登录成功'
-          })
-        } else {
-          res.send({
-            code: 400,
-            data: {
-            },
-            message: '登录失败'
-          })
-        }
-
-      })
-
-      app.get('/list_item', (req, res) => {
-        res.send({
-          code: 200,
-          data: myList,
-          message: '列表'
-        })
-      })
-
-      app.get('/list_item/detail', (req, res) => {
-        let {id} = req.query
-
-        console.log(id)
-        console.log(myListDetail)
-        let detail
-        for (let i = 0; i < myListDetail.length; i++) {
-          if (myListDetail[i].id == id) {
-            detail = myListDetail[i]
-            break
-          }
-        }
-        console.log(detail)
-
-        res.send({
-          code: 200,
-          data: detail,
-          message: '详情'
-        })
-
-      })
-      
     },
   };
 };

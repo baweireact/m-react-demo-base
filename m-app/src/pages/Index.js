@@ -1,20 +1,32 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
-import List from '../components/List.js'
+import Sidebar from '../components/Sidebar'
+import Right from '../components/Right'
 
-class Index extends Component {
+export default class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
       list: [],
+      currentIndex: 0,
     }
+  }
+
+  handleNav(currentIndex) {
+    this.setState({
+      currentIndex
+    })
+  }
+
+  handleOrder() {
+    
   }
 
   componentDidMount() {
     axios({
-      url: '/list_item',
+      url: '/list',
       method: 'get'
-    }).then((res) => {
+    }).then(res => {
       if (res.data.code === 200) {
         this.setState({
           list: res.data.data
@@ -23,15 +35,12 @@ class Index extends Component {
     })
   }
   render() {
-    let {
-      list,
-    } = this.state
+    let { list, currentIndex } = this.state
     return (
-      <div className="m-list-wrap">
-        <List list={list}></List>
+      <div className="m-main">
+        <Sidebar list={list} currentIndex={currentIndex} onNav={this.handleNav.bind(this)}></Sidebar>
+        <Right list={list} currentIndex={currentIndex} onOrder={this.handleOrder.bind(this)} ></Right>
       </div>
     )
   }
 }
-
-export default Index
