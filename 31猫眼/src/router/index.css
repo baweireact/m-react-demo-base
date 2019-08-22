@@ -8,10 +8,20 @@
 .m-index-nav{display: flex; height: 50px;line-height: 50px; border-bottom: 1px solid #dddddd;}
 .m-index-nav-item{flex: 1;text-decoration: none;text-align: center;cursor: pointer;color:#333333;}
 .m-index-nav-item.active{border-bottom: 2px solid #ff0000;}
+.m-order-by-wrap{margin: 10px; text-align: right;}
+.m-order-by-btn{display: inline-block;margin: 0 5px;}
 .m-index-list{ flex: 1;overflow-y: auto;}
 .m-index-list-item{display: flex;margin: 10px;}
 .m-item-img{width: 64px;height: 90px;}
 .m-item-info{margin: 0 10px; flex: 1; border-bottom: 1px solid #dddddd;}
 .m-item-title{font-size: 16px;font-weight: bold;}
-
+.m-item-scroe-wrap{line-height: 40px;}
+.m-item-score{margin: 0 5px;font-weight: bold; color: #f66f0c;}
+.m-back{display: inline-block;position: absolute;top: 14px;left: 15px; width: 20px;height: 20px;border-left: 2px solid #ffffff;border-bottom: 2px solid #ffffff;transform: rotate(45deg);cursor: pointer;}
+.m-search-wrap{margin: 10px;}
+.m-search-input{ width: 100%;height: 40px;line-height: 40px;}
+.m-login{margin: 10px 0 0;}
+.m-login-row{margin: 10px;}
+.m-login-input{width: 100%;height: 40px;}
+.m-login-btn{width: 100%;height: 40px;}
 

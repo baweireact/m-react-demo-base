@@ -9,9 +9,7 @@ export default class Index extends Component {
     return (
       <div className="m-main">
         <div className="m-index-wrap">
-          <Route>
-            <IndexNav></IndexNav>
-          </Route>
+          <IndexNav></IndexNav>
           <Route path="/main/index/hot" component={HotList}></Route>
           <Route path="/main/index/coming" component={ComingList}></Route>
         </div>

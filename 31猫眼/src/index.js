@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom'
 import Router from './router/Router'
+import 'antd/dist/antd.css'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 

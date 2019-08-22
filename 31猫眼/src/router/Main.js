@@ -28,7 +28,7 @@ export default class Main extends Component {
         <Switch>
           <Route path="/main/index" component={Index}></Route>
           <Route path="/main/cinema" component={Cinema}></Route>
-          <Route path="/main/me" render={ () => {
+          <Route path="/main/me" render={() => {
             if (localStorage.getItem('username')) {
               return <Me></Me>
             } else {

@@ -6,6 +6,7 @@ const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMi
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const paths = require('./paths');
 const fs = require('fs');
+const bodyParser = require('body-parser')
 const { movieList, mostExpected, comingList  } = require('./data.js')
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
@@ -100,6 +101,7 @@ module.exports = function(proxy, allowedHost) {
       // it used the same host and port.
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware());
+      app.use(bodyParser.json())
 
       app.get('/movie_list', (req, res) => {
         res.send({
@@ -122,6 +124,16 @@ module.exports = function(proxy, allowedHost) {
           code: 200,
           data: comingList,
           message: '即将上映'
+        })
+      })
+
+      app.post('/search', (req, res) => {
+        let { searchValue } = req.body
+        let data =  movieList.filter(item => item.nm.includes(searchValue))
+        res.send({
+          code: 200,
+          data,
+          message: '搜索结果'
         })
       })
     },
