@@ -1,25 +1,11 @@
 import React, { Component } from 'react'
 
 export default class Right extends Component {
-  handleSub(food) {
-    let cart = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
-    let index = cart.findIndex(item => item.spuId === food.spuId)
-    if (index >= 0) {
-      cart[index].count = cart[index].count - 1
-      localStorage.setItem('cart', JSON.stringify(cart))
-    }
+  handleSub(index) {
+    this.props.onSub(index)
   }
-  handleAdd(food) {
-    let cart = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
-    let index = cart.findIndex(item => item.spuId === food.spuId)
-    if (index >= 0) {
-      cart[index].count = cart[index].count + 1
-      localStorage.setItem('cart', JSON.stringify(cart))
-    } else {
-      food.count = 1
-      cart.push(food)
-      localStorage.setItem('cart', JSON.stringify(cart))
-    }
+  handleAdd(index) {
+    this.props.onAdd(index)
   }
   render() {
     let { list, currentIndex } = this.props
@@ -33,9 +19,12 @@ export default class Right extends Component {
             <div className="m-right-item-title">{item.spuName}</div>
             <div className="m-right-item-price">¥{item.currentPrice}</div>
             <div className="m-right-order-wrap">
-              <span className="m-order-sub-btn" onClick={this.handleSub.bind(this, item)}>-</span>
-              <span className="m-order-count">{item.count}</span>
-              <span className="m-order-add-btn" onClick={this.handleAdd.bind(this, item)}>+</span>
+              <span 
+                className={"m-order-sub-btn " + (item.count >= 1 ? 'active' : '')}
+                onClick={this.handleSub.bind(this, index)}>-</span>
+              <span 
+                className={"m-order-count " + (item.count >= 1 ? 'active' : '')}>{item.count}</span>
+              <span className="m-order-add-btn" onClick={this.handleAdd.bind(this, index)}>+</span>
             </div>
           </div>
         </div>

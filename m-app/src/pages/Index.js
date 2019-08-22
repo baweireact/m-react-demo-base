@@ -18,8 +18,25 @@ export default class Index extends Component {
     })
   }
 
-  handleOrder() {
-    
+  handleSub(index) {
+    let { currentIndex, list } = this.state
+    list[currentIndex].spuList[index].count = list[currentIndex].spuList[index].count - 1
+    this.setState({
+      list
+    })
+  }
+
+  handleAdd(index) {
+    let { currentIndex, list } = this.state
+    list[currentIndex].spuList[index].count = list[currentIndex].spuList[index].count + 1
+    this.setState({
+      list
+    })
+  }
+
+  componentDidUpdate() {
+    let { list } = this.state
+    localStorage.setItem('cart', JSON.stringify(list))
   }
 
   componentDidMount() {
@@ -28,8 +45,17 @@ export default class Index extends Component {
       method: 'get'
     }).then(res => {
       if (res.data.code === 200) {
+        let list = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : res.data.data
+        if (!JSON.parse(localStorage.getItem('cart'))) {
+          for (let i = 0; i < list.length; i++) {
+            for (let j = 0; j < list[i].spuList.length; j++) {
+              list[i].spuList[j].count = 0
+            }
+          }
+        }
+
         this.setState({
-          list: res.data.data
+          list
         })
       }
     })
@@ -38,8 +64,15 @@ export default class Index extends Component {
     let { list, currentIndex } = this.state
     return (
       <div className="m-main">
-        <Sidebar list={list} currentIndex={currentIndex} onNav={this.handleNav.bind(this)}></Sidebar>
-        <Right list={list} currentIndex={currentIndex} onOrder={this.handleOrder.bind(this)} ></Right>
+        <div className="m-index">
+          <Sidebar list={list} currentIndex={currentIndex} onNav={this.handleNav.bind(this)}></Sidebar>
+          <Right 
+            list={list} 
+            currentIndex={currentIndex} 
+            onSub={this.handleSub.bind(this)}
+            onAdd={this.handleAdd.bind(this)}
+            ></Right>
+        </div>
       </div>
     )
   }
