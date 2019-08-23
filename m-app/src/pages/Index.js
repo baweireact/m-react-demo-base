@@ -1,78 +1,62 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import Sidebar from '../components/Sidebar'
-import Right from '../components/Right'
+import { Motion, spring, StaggeredMotion, TransitionMotion } from 'react-motion'
 
 export default class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      list: [],
-      currentIndex: 0
+      items: [{key: 'a', size: 10}, {key: 'b', size: 20}, {key: 'c', size: 30}]
     }
   }
-
-  handleNav(currentIndex) {
-    this.setState({
-      currentIndex
-    })
-  }
-
-  handleSub(index) {
-    let { currentIndex, list } = this.state
-    list[currentIndex].spuList[index].count = list[currentIndex].spuList[index].count - 1
-    this.setState({
-      list
-    })
-  }
-
-  handleAdd(index) {
-    let { currentIndex, list } = this.state
-    list[currentIndex].spuList[index].count = list[currentIndex].spuList[index].count + 1
-    this.setState({
-      list
-    })
-  }
-
-  componentDidUpdate() {
-    let { list } = this.state
-    localStorage.setItem('cart', JSON.stringify(list))
-  }
-
   componentDidMount() {
-    axios({
-      url: '/list',
-      method: 'get'
-    }).then(res => {
-      if (res.data.code === 200) {
-        let list = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : res.data.data
-        if (!JSON.parse(localStorage.getItem('cart'))) {
-          for (let i = 0; i < list.length; i++) {
-            for (let j = 0; j < list[i].spuList.length; j++) {
-              list[i].spuList[j].count = 0
-            }
-          }
-        }
-
-        this.setState({
-          list
-        })
-      }
-    })
+    this.setState({
+      items: [{key: 'a', size: 10}, {key: 'b', size: 20}], // remove c.
+    });
+  }
+  willLeave() {
+    // triggered when c's gone. Keeping c until its width/height reach 0.
+    return {width: spring(0), height: spring(0)};
   }
   render() {
-    let { list, currentIndex } = this.state
     return (
-      <div className="m-main">
-        <div className="m-index">
-          <Sidebar list={list} currentIndex={currentIndex} onNav={this.handleNav.bind(this)}></Sidebar>
-          <Right 
-            list={list} 
-            currentIndex={currentIndex} 
-            onSub={this.handleSub.bind(this)}
-            onAdd={this.handleAdd.bind(this)}
-            ></Right>
-        </div>
+      <div>
+        <Motion defaultStyle={{ x: 0 }} style={{ x: spring(10) }}>
+          {
+            value => (
+              <div style={value}>{value.x}</div>
+            )
+          }
+        </Motion>
+        <StaggeredMotion
+          defaultStyles={[{ h: 0 }]}
+          styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
+            return i === 0
+              ? { h: spring(100) }
+              : { h: spring(prevInterpolatedStyles[i - 1].h) }
+          })}>
+          {interpolatingStyles =>
+            <div>
+              {interpolatingStyles.map((style, i) =>
+                <div key={i} style={{ border: '1px solid', height: style.h }} />)
+              }
+            </div>
+          }
+        </StaggeredMotion>
+        <TransitionMotion
+          willLeave={this.willLeave}
+          styles={this.state.items.map(item => ({
+            key: item.key,
+            style: { width: item.size, height: item.size },
+          }))}>
+          {interpolatedStyles =>
+            // first render: a, b, c. Second: still a, b, c! Only last one's a, b.
+            <div>
+              {interpolatedStyles.map(config => {
+                return <div key={config.key} style={{ ...config.style, border: '1px solid' }} />
+              })}
+            </div>
+          }
+        </TransitionMotion>
       </div>
     )
   }

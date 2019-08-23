@@ -18,6 +18,8 @@
 .m-order-sub-btn{display: inline-block;margin: 6px 0 0; width: 20px;height: 20px;line-height: 18px;text-align: center;border-radius: 10px; background: #dddddd;color: #ffffff;cursor: pointer;}
 .m-order-count{display: inline-block;width: 50px;color: #f66f0c;font-size: 20px; font-weight: bold;text-align: center;vertical-align: top;}
 .m-order-add-btn{display: inline-block;margin: 6px 0 0; width: 20px;height: 20px;line-height: 18px;text-align: center;border-radius: 10px; background: #ee3b3b;color: #ffffff;cursor: pointer;vertical-align: top;}
+.m-delete-btn{display: inline-block;margin: 0 0 0 20px;cursor: pointer;}
+.m-delete-btn:hover{color: #f66f0c;}
 .m-cart{padding: 10px;}
 .m-cart-group-checkbox{font-size: 20px!important;font-weight: bold;}
 .m-cart-checkbox-wrap{position: relative;padding: 0 0 0 24px;}

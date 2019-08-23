@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Checkbox } from 'antd'
+import { Checkbox, Button } from 'antd'
 
 export default class Cart extends Component {
   constructor(props) {
@@ -71,6 +71,18 @@ export default class Cart extends Component {
     })
   }
 
+  //删除
+  handleDelete(index, innerIndex) {
+    let { myCart } = this.state
+    myCart[index].list.splice(innerIndex, 1)
+    if(myCart[index].list.length === 0) {
+      myCart.splice(index, 1)
+    }
+    this.setState({
+      myCart
+    })
+  }
+
   //计算总价和总数
   total() {
     let { myCart } = this.state
@@ -123,6 +135,7 @@ export default class Cart extends Component {
                   <span
                     className={"m-order-count " + (innerItem.count >= 1 ? 'active' : '')}>{innerItem.count}</span>
                   <span className="m-order-add-btn" onClick={this.handleAdd.bind(this, index, innerIndex)}>+</span>
+                  <span className="m-delete-btn" onClick={this.handleDelete.bind(this, index, innerIndex)} >删除</span>
                 </div>
               </div>
             ))
