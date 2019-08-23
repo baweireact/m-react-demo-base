@@ -9,6 +9,21 @@ export default class Cart extends Component {
     }
   }
 
+  //全选
+  handleSelectAll(e) {
+    let { myCart } = this.state
+    for (let i = 0; i < myCart.length; i++) {
+      myCart[i].checked = e.target.checked
+      for (let j = 0; j < myCart[i].list.length; j++) {
+        myCart[i].list[j].checked = e.target.checked
+      }
+    }
+    this.setState({
+      myCart
+    })
+  }
+
+  //选择分类
   handleGroup(index, e) {
     let { myCart } = this.state
     myCart[index].checked = e.target.checked
@@ -20,6 +35,7 @@ export default class Cart extends Component {
     })
   }
 
+  //选择某一项
   handleChecked(index, innerIndex, e) {
     let { myCart } = this.state
     myCart[index].list[innerIndex].checked = e.target.checked
@@ -35,27 +51,7 @@ export default class Cart extends Component {
     })
   }
 
-  // checkboxState() {
-  //   let { myCart } = this.state
-  //   let groupCheckedCount = 0
-  //   for (let i = 0; i < myCart.length; i++) {
-  //     let checkboxCheckedCount = 0
-  //     if (myCart[i].checked) {
-  //       groupCheckedCount++
-  //     }
-  //     for (let j = 0; j < myCart[i].list.length; j++) {
-  //       if (myCart[i].list[j].checked) {
-  //         checkboxCheckedCount++
-  //       }
-  //     }
-  //     myCart[i].checked = checkboxCheckedCount === myCart[i].list.length
-  //   }
-  //   this.setState({
-  //     myCart,
-  //     groupCheckedCount
-  //   })
-  // }
-
+  //减
   handleSub(index, innerIndex) {
     let { myCart } = this.state
     if (myCart[index].list[innerIndex].count > 1) {
@@ -65,6 +61,8 @@ export default class Cart extends Component {
       myCart
     })
   }
+
+  //加
   handleAdd(index, innerIndex) {
     let { myCart } = this.state
     myCart[index].list[innerIndex].count = myCart[index].list[innerIndex].count + 1
@@ -73,6 +71,7 @@ export default class Cart extends Component {
     })
   }
 
+  //计算总价和总数
   total() {
     let { myCart } = this.state
     let totalPrice = 0, totalNum = 0
@@ -90,44 +89,15 @@ export default class Cart extends Component {
     }
   }
 
-  handleSelectAll(e) {
+  componentDidUpdate() {
     let { myCart } = this.state
-    for (let i = 0; i < myCart.length; i++) {
-      myCart[i].checked = e.target.checked
-      for (let j = 0; j < myCart[i].list.length; j++) {
-        myCart[i].list[j].checked = e.target.checked
-      }
-    }
-    this.setState({
-      myCart
-    })
+    localStorage.setItem('mycart', JSON.stringify(myCart))
   }
 
   componentDidMount() {
-    let list = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
-    let myCart = []
-    for (let i = 0; i < list.length; i++) {
-      let temp = {
-        checked: true,
-        title: list[i].categoryName,
-        list: []
-      }
-      for (let j = 0; j < list[i].spuList.length; j++) {
-        if (list[i].spuList[j].count >= 1) {
-          list[i].spuList[j].checked = true
-          temp.list.push(list[i].spuList[j])
-        }
-      }
-      if (temp.list.length > 0) {
-        myCart.push(temp)
-      }
-    }
-
-    console.log(myCart)
-
+    let myCart = JSON.parse(localStorage.getItem('mycart')) ? JSON.parse(localStorage.getItem('mycart')) : []
     this.setState({
-      list,
-      myCart,
+      myCart
     })
   }
 
@@ -139,7 +109,7 @@ export default class Cart extends Component {
       myCartDom = myCart.map((item, index) => (
         <div key={index}>
           <div>
-            <Checkbox className="m-cart-group-checkbox" checked={item.checked} onChange={this.handleGroup.bind(this, index)}>{item.title}</Checkbox>
+            <Checkbox className="m-cart-group-checkbox" checked={item.checked} onChange={this.handleGroup.bind(this, index)}>{item.categoryName}</Checkbox>
           </div>
           {
             item.list.map((innerItem, innerIndex) => (
