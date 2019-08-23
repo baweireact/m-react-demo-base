@@ -52,6 +52,7 @@ export default class Right extends Component {
     this.handleHideModal()
   }
 
+  //加入购物主体代码
   addToMyCart() {
     let { list, currentIndex } = this.props
     let { currentItem } = this.state
