@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Modal, Button } from 'antd'
+import Fly from './Fly'
 
 export default class Right extends Component {
   constructor(props) {
@@ -7,6 +8,8 @@ export default class Right extends Component {
     this.state = {
       visible: false,
       currentItem: {},
+      runFlyCount: 0,
+      flyImg: '',
     }
   }
 
@@ -48,8 +51,14 @@ export default class Right extends Component {
 
   //加入购物车
   handleAddToMyCart() {
+    let { runFlyCount, currentItem } = this.state
     this.addToMyCart()
     this.handleHideModal()
+    runFlyCount = runFlyCount + 1
+    this.setState({
+      runFlyCount,
+      flyImg: currentItem.bigImageUrl
+    })
   }
 
   //加入购物主体代码
@@ -102,7 +111,7 @@ export default class Right extends Component {
 
   render() {
     let { list, currentIndex } = this.props
-    let { visible, currentItem } = this.state
+    let { visible, currentItem, runFlyCount, flyImg } = this.state
 
     let listDom
     if (list.length > 0) {
@@ -121,6 +130,7 @@ export default class Right extends Component {
     return (
       <div className="m-right">
         {listDom}
+        <Fly runFlyCount={runFlyCount} flyImg={flyImg}></Fly>
         <Modal
           title="加入购物车"
           visible={visible}

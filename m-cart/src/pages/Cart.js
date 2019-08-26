@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Checkbox, Button } from 'antd'
+import { Checkbox } from 'antd'
 
 export default class Cart extends Component {
   constructor(props) {

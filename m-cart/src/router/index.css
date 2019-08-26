@@ -28,5 +28,17 @@
 .m-total-num{margin: 0 5px;font-size: 20px;font-weight: bold;color: #f66f0c;}
 .m-select-all{margin: 10px 0 0!important; font-size: 20px!important;font-weight: bold;}
 
+.m-fly-wrap{position:fixed;top:0;left:0;right:0;bottom:0;z-index:99;pointer-events: none;}
+.m-fly-btn{pointer-events: auto;}
+.m-box{position:absolute;left:calc(50% + 200px)}
+.m-box.run{animation:box-move 0.5s cubic-bezier(0,0,1,1);animation-fill-mode:forwards}
+.m-inner{position:absolute;display:none;width:50px;height:50px;border-radius:50%;background:#f66f0c;background-size:100% 100%;transform: translateX(-50%);}
+.m-inner.run{display:inline-block;animation:inner-move 0.5s;animation-timing-function:cubic-bezier(.05,.51,.31,.82);animation-fill-mode:forwards}
+@keyframes box-move{0%{top:0}
+100%{top:90%}
+}
+@keyframes inner-move{0%{left:0}
+100%{left:-200px}
+}
 
 

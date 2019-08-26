@@ -10,7 +10,7 @@ export default class Index extends Component {
   }
   componentDidMount() {
     this.setState({
-      items: [{key: 'a', size: 10}, {key: 'b', size: 20}], // remove c.
+      items: [{key: 'a', size: 10}, {key: 'b', size: 20}, {key: 'c', size: 100}], // remove c.
     });
   }
   willLeave() {
@@ -28,11 +28,11 @@ export default class Index extends Component {
           }
         </Motion>
         <StaggeredMotion
-          defaultStyles={[{ h: 0 }]}
+          defaultStyles={[{ h: 0 },{ h: 0 }]}
           styles={prevInterpolatedStyles => prevInterpolatedStyles.map((_, i) => {
             return i === 0
               ? { h: spring(100) }
-              : { h: spring(prevInterpolatedStyles[i - 1].h) }
+              : { h: spring(200) }
           })}>
           {interpolatingStyles =>
             <div>
