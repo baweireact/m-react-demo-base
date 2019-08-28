@@ -6,8 +6,9 @@ const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMi
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const paths = require('./paths');
 const fs = require('fs');
+const Mock = require('mockjs')
 const bodyParser = require('body-parser');
-const { travelList, travelDetail } = require('./data.js')
+const { footList } = require('./data.js')
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -103,24 +104,11 @@ module.exports = function(proxy, allowedHost) {
       app.use(noopServiceWorkerMiddleware());
       app.use(bodyParser.json());
 
-      app.get('/travel_list', (req, res) => {
-        let { type } = req.query
-        let data = travelList.filter(item => item.type === type)
+      app.get('/list', (req, res) => {
         res.send({
           code: 200,
-          data: data,
-          message: '旅游列表'
-        })
-      })
-
-      app.get('/travel_detail', (req, res) => {
-        let { id } = req.query
-        let data = travelDetail.find(item => item.id == id)
-        console.log(id, data, travelDetail)
-        res.send({
-          code: 200,
-          data: data,
-          message: '旅游详情'
+          data: footList,
+          message: '西少爷点餐'
         })
       })
     },
